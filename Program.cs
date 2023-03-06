@@ -1,5 +1,6 @@
 using System.Security.Authentication.ExtendedProtection;
-
+using Microsoft.EntityFrameworkCore;
+using logincsharp.Models;
 
 //Most of what is nere is boilerplate
 //installed by the webapi template.
@@ -24,9 +25,11 @@ internal class Program
         //A service runner is needed for MVC controllers
         builder.Services.AddControllers();
         
+        //DbContext registration
         //API endpoints
         //Swagger
         //CORS policy
+        builder.Services.AddDbContext<LoginContext>(opt => opt.UseInMemoryDatabase("userdata"));
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
